@@ -1,17 +1,3 @@
-// آرایه برای ذخیره اطلاعات کاربران
-let users = [];
-
-// تابع دریافت اطلاعات کاربران از API
-async function fetchUsers() {
-  try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await response.json();
-    users = data;
-    console.log('لیست کاربران:', users);
-  } catch (error) {
-    console.error('خطا در دریافت اطلاعات کاربران:', error);
-  }
-}
 
 // تابع دریافت و چاپ اطلاعات فرم ثبت‌نام
 document.addEventListener('DOMContentLoaded', function() {
