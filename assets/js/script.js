@@ -2,7 +2,6 @@
 // تابع دریافت و چاپ اطلاعات فرم ثبت‌نام
 document.addEventListener('DOMContentLoaded', function() {
   // دریافت اطلاعات کاربران در هنگام بارگذاری صفحه
-  fetchUsers();
   
   const form = document.querySelector('.signup-form');
   if (form) {
