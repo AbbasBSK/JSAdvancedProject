@@ -1,33 +1,28 @@
+// Function Declaration (تعریف تابع)
+function sayHello() {
+  console.log("سلام!");
+}
+sayHello(); 
 
-// تابع دریافت و چاپ اطلاعات فرم ثبت‌نام
-document.addEventListener('DOMContentLoaded', function() {
-  // دریافت اطلاعات کاربران در هنگام بارگذاری صفحه
-  
-  const form = document.querySelector('.signup-form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = form.querySelector('[name="name"]').value;
-      const email = form.querySelector('[name="email"]').value;
-      const password = form.querySelector('[name="password"]').value;
-      (async () => {
-        try {
-          const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name, email, password })
-          });
-          const result = await response.json();
-          console.log('ارسال شد:', result);
-        } catch (error) {
-          console.error('خطا در ارسال:', error);
-        }
-      })();
-    });
-  }
-});
+// Function Expression (عبارت تابع)
+let sayHello2 = function() {
+  console.log("سلام!");
+};
+
+sayHello2(); 
+
+// Anonymous Functions (توابع بی‌نام)
+setTimeout(function() {
+  console.log("بعد از ۲ ثانیه اجرا شد!");
+}, 2000);
+
+
+// IIFE (Immediately Invoked Function Expression) – تابع خوداجرا
+(function() {
+  console.log("این یک تابع خوداجراست!");
+})();
+
+
 
 
 
