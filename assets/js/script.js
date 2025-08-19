@@ -1,143 +1,72 @@
-// // Function Declaration (تعریف تابع)
-// function sayHello() {
-//   console.log("سلام!");
-// }
-// sayHello(); 
+function outer() {
+  let count = 0;
 
-// // Function Expression (عبارت تابع)
-// let sayHello2 = function() {
-//   console.log("سلام!");
-// };
-
-// sayHello2(); 
-
-// // Anonymous Functions (توابع بی‌نام)
-// setTimeout(function() {
-//   console.log("بعد از ۲ ثانیه اجرا شد!");
-// }, 2000);
-
-
-// // IIFE (Immediately Invoked Function Expression) – تابع خوداجرا
-// (function() {
-//   console.log("این یک تابع خوداجراست!");
-// })();
-
-// // Arrow Function 
-// let sayHelloArrow = ()=> {
-//   console.log("سلام!");
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function showThis() {
-//   console.log(this.name);
-// }
-
-// showThis(); //  undefined /  window
-
-// const obj = { name: "عباس", f: showThis };
-// obj.f(); // اینجا this = obj
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const showThis = ()=> {
-//   console.log(this);
-// }
-
-// showThis(); //
-
-// const obj = { name: "عباس", f: showThis };
-// obj.f(); // اینجا this = obj
-
-
-
-
-
-
-
-
-
-function showThis() {
-  const showThis2 = ()=> {
-    console.log(this.name);
+  return function inner() {
+    count++;
+    console.log(count);
   }
-  showThis2(); // 
+
 }
 
-const obj = { name: "عباس", f: showThis };
-obj.f(); // اینجا this = obj
+const fn = outer();
+
+fn();
+fn();
+
+
+
+const counter = (function() {
+  let count = 0;
+  return function() {
+    count++;
+    return count;
+  };
+})();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+
+
+
+function multiplier(factor) {
+  return function(number) {
+    return number * factor;
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+
+
+function greeting(name) {
+  return function() {
+    return "سلام " + name;
+  };
+}
+
+const sayHello = greeting("عباس");
+
+console.log(sayHello()); // "سلام عباس"
 
 
 
 
+function createCounter() {
+  let counter = 0; // متغیر خصوصی
+  
+  return function() {
+    counter++;
+    return counter;
+  };
+}
 
+const myCounter = createCounter();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const sayHello = function () {
-//   console.log("سلام، من " + this.name + " هستم");
-// }
-
-// const user1 = {
-//   name: "عباس",
-//   sayHello: sayHello // همون تابع رو قرض گرفتیم
-// };
-// const user2 = {
-//   name: "علی",
-//   sayHello: sayHello // همون تابع رو قرض گرفتیم
-// };
-
-// user1.sayHello(); // سلام، من عباس هستم
-// user2.sayHello(); // سلام، من علی هستم
-
-
-
+console.log(myCounter()); // 1
+console.log(myCounter()); // 2
+console.log(myCounter()); // 3
