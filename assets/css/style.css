@@ -88,7 +88,7 @@ li {
   font-size: 0.9rem;
 }
 
-dialog {
+dialog , section{
   border: none;
   border-radius: 12px;
   padding: 1.5rem;
@@ -100,7 +100,7 @@ dialog {
   margin: auto;
 }
 
-dialog::backdrop {
+dialog::backdrop , section::backdrop {
   background: rgba(0, 0, 0, 0.3);
 }
 
