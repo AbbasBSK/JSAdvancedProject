@@ -16,12 +16,19 @@ const TaskManager = (function () {
   return {
     get: () => tasks,
     add: (task) => { tasks.push(task); save(); },
+    remove: (index) => { tasks.splice(index, 1); save(); },
+    update: (index, task) => { tasks[index] = task; save(); },
+    complete: (index, bool) => {
+      tasks[index].completed = bool ? bool : 0; save();
+    }
   };
 })();
-
+// متغیر مربوط به ویرایش یا اضافه کردن تسک
+let editIndex = null;
 
 // تابع باز کردن پاپ آپ
 addBtn.onclick = () => {
+  editIndex = null;
   modalTitle.textContent = "تسک جدید";
   titleInput.value = "";
   textInput.value = "";
@@ -40,10 +47,38 @@ saveBtn.onclick = (e) => {
     text: textInput.value,
     date: new Date().toLocaleString("fa-IR")
   };
-  TaskManager.add(task);
+  if (editIndex !== null) TaskManager.update(editIndex, task);
+  else TaskManager.add(task);
   modal.close();
   render();
 };
+
+// تابع ویرایش تسک
+window.editTask = (i) => {
+  editIndex = i;
+  const t = TaskManager.get()[i];
+  modalTitle.textContent = "ویرایش تسک";
+  titleInput.value = t.title;
+  textInput.value = t.text;
+  modal.showModal();
+};
+
+
+// تابع حذف تسک
+const deleteTask = (i) => {
+  TaskManager.remove(i);
+  render();
+};
+
+// تابع وضعیت کامل بودن تسک
+const completeTask = (i, bool) => {
+  console.log(i);
+
+  TaskManager.complete(i, bool);
+  render();
+};
+
+
 
 render();
 
@@ -53,6 +88,10 @@ function render() {
   TaskManager.get().forEach((task, i) => {
 
     const li = document.createElement("li");
+
+    // اگر تسک کامل شده بود کلاس اضافه شود
+    li.className = task.completed === 1 ? "completed" : task.completed === 2 ? "not-completed" : "";
+
     li.innerHTML = `
           <div class="task-header">
             <span class="task-title">${task.title}</span>
