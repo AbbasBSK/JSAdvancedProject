@@ -1,116 +1,77 @@
-const TaskManager = (function () {
-  // مدیریت مقادیر فضای ذخیره سازی
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+// const para1 = document.getElementById("para1");
 
-  function save() { localStorage.setItem("tasks", JSON.stringify(tasks)); }
+// // outerHTML: کل تگ + محتواش رو برمی‌گردونه
+// console.log(para1.outerHTML);
 
-  // تعریف توابع مورد نیاز برای کار با آرایه 
-  return {
-    get: () => tasks,
-    add: (task) => { tasks.push(task); save(); },
-    update: (index, task) => { tasks[index] = task; save(); },
-    remove: (index) => { tasks.splice(index, 1); save(); },
-    complete: (index, bool) => {
-      tasks[index].completed = bool ? bool : 0; save();
-    } // اضافه شد
-  };
-})();
+// para1.outerHTML = '<h2 id="para1" class="title">New Heading</h2>';
 
-// ابجاد متعیر ها با استفاده فراخوانی المان های صفحه
-const taskList = document.getElementById("taskList");
-const modal = document.getElementById("taskModal");
-const addBtn = document.getElementById("addTaskBtn");
-const saveBtn = document.getElementById("saveBtn");
-const titleInput = document.getElementById("taskTitle");
-const textInput = document.getElementById("taskText");
-const modalTitle = document.getElementById("modalTitle");
 
-let editIndex = null;
+// // setAttribute
+// para1.setAttribute("id", "example");
+// console.log("attribute جدید اضافه شد:", para1.getAttribute("id"));
 
-// تابع باز کردن پاپ آپ
-addBtn.onclick = () => {
-  editIndex = null;
-  modalTitle.textContent = "تسک جدید";
-  titleInput.value = "";
-  textInput.value = "";
-  modal.showModal();
-};
+// // hasAttribute
+// console.log("آیا این المنت id دارد؟", para1.hasAttribute("id"));
 
-// تابع ذخیره تسک 
-saveBtn.onclick = (e) => {
-  e.preventDefault();
-  if (!titleInput.value || !textInput.value) {
-    alert("لطفا عنوان و توضیحات تسک را وارد کنید.");
-    return
-  }
-  const task = {
-    title: titleInput.value,
-    text: textInput.value,
-    date: new Date().toLocaleString("fa-IR")
-  };
-  if (editIndex !== null) TaskManager.update(editIndex, task);
-  else TaskManager.add(task);
-  render();
-  modal.close();
-};
+// // removeAttribute
+// para1.removeAttribute("class");
 
-// تابع ویرایش تسک
-window.editTask = (i) => {
-  const t = TaskManager.get()[i];
-  editIndex = i;
-  modalTitle.textContent = "ویرایش تسک";
-  titleInput.value = t.title;
-  textInput.value = t.text;
-  modal.showModal();
-};
+// // getAttribute
+// const cls = para1.getAttribute("class");
+// console.log("کلاس فعلی:", cls);
 
-// تابع حذف تسک
-const deleteTask = (i) => {
-  TaskManager.remove(i);
-  render();
-};
 
-// تابع وضعیت کامل بودن تسک
-const completeTask = (i, bool) => {
-  console.log(i);
 
-  TaskManager.complete(i, bool);
-  render();
-};
 
-render();
 
-// تابع رندر برای بارگذاری مجدد اطلاعات 
-function render() {
-  taskList.innerHTML = "";
-  TaskManager.get().forEach((task, i) => {
-    const li = document.createElement("li");
-    // اگر تسک کامل شده بود کلاس اضافه شود
-    li.className = task.completed === 1 ? "completed" : task.completed === 2 ? "not-completed" : "";
-    li.innerHTML = `
-          <div class="task-header">
-            <span class="task-title">${task.title}</span>
-            <div class="task-actions">
-              <button class="yellow fs_2x shadow" 
-              title="ویرایش" 
-              onclick="editTask(${i})">&#9998;</button>
-              
-              <button class="red fs_2x " 
-              title="حذف" 
-              onclick="deleteTask(${i})">&#x1F5D1; </button>
 
-              <button class="green fs_2x " 
-              title="تکمیل" 
-              onclick="completeTask(${i}, 1)" >&#x2611;</button>
 
-              <button class="orange fs_2x " 
-              title="عدم تکمیل" 
-              onclick="completeTask(${i}, 2)" >&#10006;</button>
-            </div>
-          </div>
-          <div>${task.text}</div>
-          <div class="task-date">${task.date}</div>
-        `;
-    taskList.appendChild(li);
-  });
-}
+
+
+
+// const container = document.getElementById("container");
+// const para2 = document.getElementById("para2");
+
+// // removeChild → حذف یک فرزند
+// container.removeChild(para2);
+
+// // ساخت یک المنت جدید
+// const newPara = document.createElement("p");
+// newPara.textContent = "This is a new paragraph";
+// container.appendChild(newPara);
+
+// // replaceChild → جایگزینی المنت جدید به‌جای span
+// const span1 = document.getElementById("span1");
+// container.replaceChild(newPara, span1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const container2 = document.getElementById("container");
+const para1 = document.getElementById("para1");
+
+console.log("والد para1:", para1.parentNode); // دسترسی به والد
+console.log("لیست همه بچه‌ها:", container2.childNodes); // نودهای داخل والد
+
+console.log("اولین بچه:", container2.firstChild);
+console.log("آخرین بچه:", container2.lastChild);
+
+// حرکت بین خواهر و برادرها
+console.log("nextSibling:", para1.nextSibling);
+console.log("previousSibling:", para1.previousSibling);
+
+// closest → نزدیک‌ترین جدی که با selector بخوره
+console.log(para1.closest("div")); // میره بالا تا برسه به اولین div
