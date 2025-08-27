@@ -45,10 +45,13 @@ saveBtn.onclick = (e) => {
   const task = {
     title: titleInput.value,
     text: textInput.value,
-    date: new Date().toLocaleString("fa-IR")
+    date: new Date().toLocaleString("fa-IR"),
+    completed: 0  // اضافه کردن مقدار پیش‌فرض
   };
   if (editIndex !== null) TaskManager.update(editIndex, task);
   else TaskManager.add(task);
+  console.log(TaskManager.add(task));
+
   modal.close();
   render();
 };
