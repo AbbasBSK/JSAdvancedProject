@@ -1,56 +1,54 @@
-// const para1 = document.getElementById("para1");
+// // --- اطلاعات کلی ---
+// console.log("عنوان:", document.title);
+// document.title = "عنوان جدید";
+// console.log("URL:", document.URL);
+// console.log("دامنه:", document.domain);
+// console.log("Referrer:", document.referrer);
+// console.log("آخرین تغییر:", document.lastModified);
+// console.log("Character set:", document.characterSet);
+// setTimeout(() => {
+//   console.log("وضعیت بارگذاری:", document.readyState);
+// }, 1000);
+// console.log("Active element:", document.activeElement);
 
-// // outerHTML: کل تگ + محتواش رو برمی‌گردونه
-// console.log(para1.outerHTML);
 
-// para1.outerHTML = '<h2 id="para1" class="title">New Heading</h2>';
-
-
-// // setAttribute
-// para1.setAttribute("id", "example");
-// console.log("attribute جدید اضافه شد:", para1.getAttribute("id"));
-
-// // hasAttribute
-// console.log("آیا این المنت id دارد؟", para1.hasAttribute("id"));
-
-// // removeAttribute
-// para1.removeAttribute("class");
-
-// // getAttribute
-// const cls = para1.getAttribute("class");
-// console.log("کلاس فعلی:", cls);
-
+// // // ---  دسترسی به بخش ها و المنت ها ---
+// console.log("عنوان:", document.title);
+// console.log("کل HTML:", document.documentElement);
+// console.log("Head:", document.head);
+// console.log("Body:", document.body);
+// // // document.images و document.links و document.scripts document.styleSheets و document.forms
 
 
 
+// // --- انتخاب ---
+// console.log("با ID:", document.getElementById("title"));
+// console.log("با Class:", document.getElementsByClassName("text"));
+// console.log("با CSS:", document.querySelector("p.text"));
+// console.log("با Tag Name:", document.getElementsByTagName("p"));
+// document.querySelectorAll('[name="username"]')
+
+// // // --- ایجاد المنت ---
+// const newDiv = document.createElement("div");
+// newDiv.textContent = "من یک div جدیدم!";
+// document.body.appendChild(newDiv);
 
 
+// // --- رویداد DOM ---
 
-
-
-
-// const container = document.getElementById("container");
-// const para2 = document.getElementById("para2");
-
-// // removeChild → حذف یک فرزند
-// container.removeChild(para2);
-
-// // ساخت یک المنت جدید
-// const newPara = document.createElement("p");
-// newPara.textContent = "This is a new paragraph";
-// container.appendChild(newPara);
-
-// // replaceChild → جایگزینی المنت جدید به‌جای span
-// const span1 = document.getElementById("span1");
-// container.replaceChild(newPara, span1);
-
-
-
-
-
-
-
-
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM کاملاً بارگذاری شد!");
+  });
+  document.addEventListener("readystatechange", () => {
+    console.log("وضعیت بارگذاری:", document.readyState);
+  });
+  document.addEventListener("visibilitychange", () => {
+    console.log("وضعیت نمایشی:", document.visibilityState);
+  });
+  document.addEventListener("fullscreenchange", () => {
+    console.log("وضعیت تمام صفحه:", document.fullscreenElement);
+  });
+  console.log("وضعیت تمام صفحه:", document.fullscreenElement);
 
 
 
@@ -60,18 +58,7 @@
 
 
 
-const container2 = document.getElementById("container");
-const para1 = document.getElementById("para1");
 
-console.log("والد para1:", para1.parentNode); // دسترسی به والد
-console.log("لیست همه بچه‌ها:", container2.childNodes); // نودهای داخل والد
 
-console.log("اولین بچه:", container2.firstChild);
-console.log("آخرین بچه:", container2.lastChild);
 
-// حرکت بین خواهر و برادرها
-console.log("nextSibling:", para1.nextSibling);
-console.log("previousSibling:", para1.previousSibling);
 
-// closest → نزدیک‌ترین جدی که با selector بخوره
-console.log(para1.closest("div")); // میره بالا تا برسه به اولین div
