@@ -1,54 +1,47 @@
-// // --- اطلاعات کلی ---
-// console.log("عنوان:", document.title);
-// document.title = "عنوان جدید";
-// console.log("URL:", document.URL);
-// console.log("دامنه:", document.domain);
-// console.log("Referrer:", document.referrer);
-// console.log("آخرین تغییر:", document.lastModified);
-// console.log("Character set:", document.characterSet);
-// setTimeout(() => {
-//   console.log("وضعیت بارگذاری:", document.readyState);
-// }, 1000);
-// console.log("Active element:", document.activeElement);
+
+const out = document.getElementById("output");
+
+// نمایش اندازه‌ها و اطلاعات مرورگر
+function showInfo() {
+  out.innerHTML = `
+        <b>اندازه Viewport:</b> x ${window.innerWidth} y ${window.innerHeight} <br>
+        <b>اندازه پنجره مرورگر:</b>x ${window.outerWidth} y ${window.outerHeight} <br>
+        <b>موقعیت روی صفحه:</b> X=${window.screenX}, Y=${window.screenY} <br>
+        <b>آدرس صفحه:</b> ${window.location.href} <br>
+        <b>نام مرورگر:</b> ${window.navigator.userAgent} <br>
+        <b>مقدار اسکرول:</b> X=${window.scrollX}, Y=${window.scrollY}
+      `;
+}
+
+// اجرا هنگام بارگذاری
+window.addEventListener("load", showInfo);
+// اجرا هنگام تغییر سایز
+window.addEventListener("resize", showInfo);
+// اجرا هنگام اسکرول
+window.addEventListener("scroll", showInfo);
 
 
-// // // ---  دسترسی به بخش ها و المنت ها ---
-// console.log("عنوان:", document.title);
-// console.log("کل HTML:", document.documentElement);
-// console.log("Head:", document.head);
-// console.log("Body:", document.body);
-// // // document.images و document.links و document.scripts document.styleSheets و document.forms
+// Open window
+function testOpen() {
+  let newWin = window.open("https://example.com", "_blank", "width=400,height=400");
+  setTimeout(() => newWin.close(), 5000); // بعد 5 ثانیه بسته میشه
+}
+
+// ScrollBy
+function scrollDown() {
+  window.scrollBy(0, 200);
+}
+
+// ScrollTo
+function scrollToTop() {
+  window.scrollTo({ top: 0, left: 0 });
+}
 
 
 
-// // --- انتخاب ---
-// console.log("با ID:", document.getElementById("title"));
-// console.log("با Class:", document.getElementsByClassName("text"));
-// console.log("با CSS:", document.querySelector("p.text"));
-// console.log("با Tag Name:", document.getElementsByTagName("p"));
-// document.querySelectorAll('[name="username"]')
-
-// // // --- ایجاد المنت ---
-// const newDiv = document.createElement("div");
-// newDiv.textContent = "من یک div جدیدم!";
-// document.body.appendChild(newDiv);
 
 
-// // --- رویداد DOM ---
 
-  document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM کاملاً بارگذاری شد!");
-  });
-  document.addEventListener("readystatechange", () => {
-    console.log("وضعیت بارگذاری:", document.readyState);
-  });
-  document.addEventListener("visibilitychange", () => {
-    console.log("وضعیت نمایشی:", document.visibilityState);
-  });
-  document.addEventListener("fullscreenchange", () => {
-    console.log("وضعیت تمام صفحه:", document.fullscreenElement);
-  });
-  console.log("وضعیت تمام صفحه:", document.fullscreenElement);
 
 
 

@@ -9,12 +9,45 @@
 </head>
 
 <body>
+  <style>
+    body {
+      height: 2000px;
+      font-family: sans-serif;
+    }
+
+    #output {
+      width: 45%;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    button {
+      margin: 5px;
+    }
+
+    div {
+      width: 100%;
+      margin: 10px 0;
+      position: fixed;
+      top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  </style>
 
 
-  <h1 id="title">Hello World</h1>
-  <p class="text">پاراگراف نمونه</p>
-  <a href="https://codeyad.com">لینک</a>
-  <img width="200px" src="/assets/images/JavaScript.png" />
+  <div id="output">اینجا نتایج نمایش داده می‌شود</div>
+
+  <div>
+    <button onclick="testOpen()">Open New Window</button>
+    <button onclick="scrollDown()">ScrollBy(200)</button>
+    <button onclick="scrollToTop()">ScrollTo Top</button>
+  </div>
 
 
   <script src="/assets/js/script.js"></script>
