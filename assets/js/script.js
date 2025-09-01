@@ -1,21 +1,10 @@
 const form = document.getElementById("myForm");
-const username = document.getElementById("username");
+const ageInput = document.getElementById("age");
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault(); // جلوگیری از ارسال واقعی برای تست
-  alert("🎯 فرم ارسال شد! مقدار: " + username.value);
-});
+  e.preventDefault(); // جلوگیری از ارسال واقعی
 
-// دکمه‌ای که از submit() استفاده می‌کند
-document.getElementById("forceSubmit").addEventListener("click", () => {
-  form.submit(); 
-  // ⚠ هیچ اعتبارسنجی انجام نمی‌شود
-  // ⚠ هیچ رویداد submit اجرا نمی‌شود
-});
-
-// دکمه‌ای که از requestSubmit() استفاده می‌کند
-document.getElementById("requestSubmit").addEventListener("click", () => {
-  form.requestSubmit();
-  // ✅ رویداد submit اجرا می‌شود
-  // ✅ اعتبارسنجی انجام می‌شود
+  // مقایسه مقدارهای مختلف
+  console.log("value:", ageInput.value, typeof ageInput.value);
+  console.log("valueAsNumber:", ageInput.valueAsNumber, typeof ageInput.valueAsNumber);
 });
