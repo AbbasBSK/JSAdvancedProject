@@ -13,13 +13,14 @@
   <h2>فرم نمونه</h2>
 
   <form id="myForm">
-    <label for="username">نام کاربری:</label>
-    <input type="text" id="username" required>
+    <label>نام کاربری:
+      <input type="text" id="username" required minlength="5">
+    </label>
     <button type="submit">ارسال</button>
-    <div class="count-message"></div>
-    <div class="message"></div>
   </form>
 
+  <button id="forceSubmit">ارسال با submit()</button>
+  <button id="requestSubmit">ارسال با requestSubmit()</button>
   <script src="/assets/js/script.js"></script>
   <!-- <script src="/assets/js/main.js"></script> -->
 </body>
