@@ -4,51 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>To Do</title>
+  <title>تمرین Form و DOM</title>
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
-  <style>
-    body {
-      height: 2000px;
-      font-family: sans-serif;
-    }
 
-    #output {
-      width: 45%;
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 8px;
-    }
+  <form id="myForm">
+    <input type="text" name="username" placeholder="نام کاربری"><br>
+    <input type="password" name="password" placeholder="رمز عبور"><br>
+    <input type="checkbox" name="remember">  به حافظه سپردن<br>
+    <input type="radio" name="gender" value="male"> مرد
+    <input type="radio" name="gender" value="female"> زن<br>
+    <button type="submit">ارسال</button>
+  </form>
 
-    button {
-      margin: 5px;
-    }
+  <button onclick="start()">شروع</button>
 
-    div {
-      width: 100%;
-      margin: 10px 0;
-      position: fixed;
-      top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  </style>
-
-
-  <div id="output">اینجا نتایج نمایش داده می‌شود</div>
-
-  <div>
-    <button onclick="testOpen()">Open New Window</button>
-    <button onclick="scrollDown()">ScrollBy(200)</button>
-    <button onclick="scrollToTop()">ScrollTo Top</button>
-  </div>
-
+  <p id="msg">پیغام اینجا نمایش داده می‌شود</p>
 
   <script src="/assets/js/script.js"></script>
   <script src="/assets/js/main.js"></script>

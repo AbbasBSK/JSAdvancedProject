@@ -1,41 +1,100 @@
-
-const out = document.getElementById("output");
-
-// نمایش اندازه‌ها و اطلاعات مرورگر
-function showInfo() {
-  out.innerHTML = `
-        <b>اندازه Viewport:</b> x ${window.innerWidth} y ${window.innerHeight} <br>
-        <b>اندازه پنجره مرورگر:</b>x ${window.outerWidth} y ${window.outerHeight} <br>
-        <b>موقعیت روی صفحه:</b> X=${window.screenX}, Y=${window.screenY} <br>
-        <b>آدرس صفحه:</b> ${window.location.href} <br>
-        <b>نام مرورگر:</b> ${window.navigator.userAgent} <br>
-        <b>مقدار اسکرول:</b> X=${window.scrollX}, Y=${window.scrollY}
-      `;
-}
-
-// اجرا هنگام بارگذاری
-window.addEventListener("load", showInfo);
-// اجرا هنگام تغییر سایز
-window.addEventListener("resize", showInfo);
-// اجرا هنگام اسکرول
-window.addEventListener("scroll", showInfo);
+// 1. دسترسی به فرم‌ها
+console.log(document.forms); // همه فرم‌های صفحه یک HTML Collection
+console.log(document.forms[0]); // اولین فرم
+console.log(document.forms["myForm"]); // دسترسی با id یا name
+// این روش قدیمیه (بیشتر برای IE و اوایل جاوااسکریپت استفاده می‌شد).
 
 
-// Open window
-function testOpen() {
-  let newWin = window.open("https://example.com", "_blank", "width=400,height=400");
-  setTimeout(() => newWin.close(), 5000); // بعد 5 ثانیه بسته میشه
-}
+// شورتکات (Shortcut) یا Helper Function
+const $ = (selector, root = document) => root.querySelector(selector);
+let form = $("#myForm");
+let msg = $("#msg");
+// توی پروژه‌های بزرگ، بهتره اسم تابع توصیفی‌تر باشه (مثل qs یا select) تا همه‌ی اعضای تیم راحت بفهمن.
+const $$ = (selector, root = document) => root.querySelectorAll(selector);
+// بعضی‌ها $ رو برای querySelector می‌ذارن و $$ برای querySelectorAll:
 
-// ScrollBy
-function scrollDown() {
-  window.scrollBy(0, 200);
-}
 
-// ScrollTo
-function scrollToTop() {
-  window.scrollTo({ top: 0, left: 0 });
-}
+
+
+// 2. گرفتن و ست کردن مقدار ورودی‌ها
+// گرفتن مقدار
+console.log(form.username.value); // مقدار input با name="username"
+// ست کردن مقدار
+form.username.value = "Ali";
+
+// .value → گرفتن یا ست کردن مقدار
+// .checked → برای چک‌باکس و رادیو
+// .disabled → غیرفعال کردن فیلد
+// .hidden → پنهان/ظاهر کردن
+
+
+
+// 3. چک‌باکس و رادیو
+// رادیو
+// const start = () => {
+//   console.log(form.gender.value); // مقدار انتخاب شده (male یا female)
+//   form.remember.disabled = true;
+// }
+
+// 4. پنهان و آشکار کردن المان
+msg.hidden = true;  // پنهان میشه
+msg.hidden = false; // دوباره ظاهر میشه
+
+
+// 5. ارسال فرم با جاوااسکریپت
+const start = () => {
+  // form.submit(); // ارسال خودکار بدون کلیک کاربر
+  // // reset(): بازگرداندن مقادیر فرم به حالت اولیه
+  // form.reset();
+  // // focus(): انتقال فوکوس به یک ورودی
+  // form.username.focus();
+  // blur(): خارج کردن فوکوس
+  // form.username.blur();
+  // select(): انتخاب متن داخل input
+  form.username.select();
+};
+// submit → وقتی فرم ارسال میشه
+// reset → وقتی فرم ریست میشه
+// input → هر بار که کاربر چیزی تایپ می‌کنه
+// change → وقتی مقدار ورودی تغییر می‌کنه و کاربر فوکوس رو از اون خارج می‌کنه
+// focus → وقتی یک فیلد فوکوس می‌گیره
+// blur → وقتی فوکوس از فیلد خارج میشه
+// رویداد ارسال
+form.addEventListener("submit", function(e) {
+  e.preventDefault(); // جلوگیری از ارسال واقعی
+  msg.innerText = "✅ فرم ارسال شد، مقدار: " + form.username.value;
+});
+
+// رویداد ریست
+form.addEventListener("reset", function() {
+  msg.innerText = "♻️ فرم ریست شد";
+});
+
+// رویداد input
+form.username.addEventListener("input", function() {
+  msg.innerText = "در حال تایپ: " + form.username.value;
+});
+
+// رویداد focus و blur
+form.password.addEventListener("focus", function() {
+  msg.innerText = "رمز عبور فوکوس گرفت";
+});
+form.password.addEventListener("blur", function() {
+  msg.innerText = "رمز عبور فوکوس رو از دست داد";
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
