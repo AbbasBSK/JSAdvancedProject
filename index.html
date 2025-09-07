@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تمرین Form و DOM</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>فروشگاه ساده</title>
   <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
 
-  <h2>فرم نمونه</h2>
-
   <form id="myForm">
-    <label>سن: </label>
-    <input type="number" id="age" min="0" max="120" step="1">
-    <button type="submit">ثبت</button>
+    <input name="username" value="abbas">
+    <input name="age" value="35">
+    <select name="city" multiple>
+      <option value="tehran" selected>تهران</option>
+      <option value="paris">پاریس</option>
+      <option value="rome" selected>رم</option>
+    </select>
   </form>
 
+
+
+
+
+
+
   <script src="/assets/js/script.js"></script>
-  <!-- <script src="/assets/js/main.js"></script> -->
 </body>
 
 </html>
