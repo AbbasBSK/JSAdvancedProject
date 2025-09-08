@@ -1,13 +1,11 @@
 const form = document.getElementById("myForm");
-console.log(form.elements);
-console.log([...form]);
-
 
 const formData = new FormData(form);
-console.log(formData); 
 console.log([...formData]); // تبدیل به آرایه
 
 
+const obj = Object.fromEntries([...formData])
+console.log(obj);
 
 
 
@@ -27,13 +25,67 @@ console.log([...formData]); // تبدیل به آرایه
 
 
 
-// شیء form درواقع یک HTMLFormElement هست که خودش قابل پیمایش (iterable) می‌باشد.
-// یعنی می‌تونی روی اون با دستوراتی مثل for...of یا ... (spread) پیمایش کنی.
-// form.elements → یه مجموعه (HTMLFormControlsCollection) هست، ولی iterable نیست
-// Array, Map, Set, String, NodeList, Form → iterable هستن.
-// const a = {a:1 , b:2}
-// console.log({...a});
 
-// for (let element of form) {
-//   console.log(element); // هر بار یک input یا select برمی‌گردونه
-// }
+
+
+
+
+
+
+
+
+// const params = new URLSearchParams(formData);
+// console.log(params.toString());
+// params.append("country", "iran");
+// params.set("age", "31");
+// params.delete("city");
+
+// console.log(params.toString());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const iterator =  formData.entries()
+// console.log(iterator);
+
+
+// console.log(iterator.next()); // اولین عنصر
+// console.log(iterator.next()); // دومین عنصر
+// console.log(iterator.next()); // تمام شد
+
+
+
+
+
+
+
+
+
