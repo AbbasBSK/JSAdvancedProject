@@ -1,107 +1,27 @@
-const form = document.getElementById("myForm");
+console.log(Array(5));
+console.log(Array.of(1, 2, '3'));
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault(); // جلوگیری از رفرش شدن صفحه
+console.log(Array.from([1,2,3], x => x * 2));
+console.log(Array.from({length:3}, (_,i)=> i+1));
 
-  const formData = new FormData(form);
-  const obj = Object.fromEntries([...formData]); // تبدیل به آبجکت
-  const json = JSON.stringify(obj); // تبدیل به JSON
+console.log([1,[2,[3,[4]]]].flat(2));
+console.log([1,[2,[3,[4]]]].flat(Infinity));
 
-  try {
-    const response = await fetch("https://example.com/api", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"  // چون داریم JSON می‌فرستیم
-      },
-      body: json
-    });
+console.log(['hi','bye'].flatMap(w => w.split('')));
+console.log([1,2,3].flatMap(x => (x%2===0 ? [] : x)));
 
-    const result = await response.json(); // فرض می‌کنیم سرور JSON برمی‌گردونه
-    console.log("پاسخ سرور:", result);
-  } catch (error) {
-    console.error("خطا در ارسال:", error);
-  }
-});
+console.log([10,2,1].sort((a,b)=>a-b));
+console.log(['b','c','a'].sort());
 
+let a = [1,2,3,4];
+a.fill(0,1,3);
+console.log(a);
 
 
+let arr1 = [1,2,3,4,5];
+arr1.copyWithin(0,3);
+console.log(arr1);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const params = new URLSearchParams(formData);
-// console.log(params.toString());
-// params.append("country", "iran");
-// params.set("age", "31");
-// params.delete("city");
-
-// console.log(params.toString());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const iterator =  formData.entries()
-// console.log(iterator);
-
-
-// console.log(iterator.next()); // اولین عنصر
-// console.log(iterator.next()); // دومین عنصر
-// console.log(iterator.next()); // تمام شد
-
-
-
-
-
-
-
-
-
+let arr2 = [1,2,3,4,5];
+arr2.copyWithin(1,0,2);
+console.log(arr2);
