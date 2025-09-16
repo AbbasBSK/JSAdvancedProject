@@ -1,57 +1,84 @@
-const obj = {};
-console.log(obj);
+// // Object.keys() , Object.values()
+// const obj = { z: 9 };
+// obj.a = 1;
+// obj['b'] = 'hi';
+// Object.defineProperties(obj, { c: { value:2, enumerable:false }, d: { value:3, enumerable:true } });
+// // console.log(obj); // {z: 9, a: 1, c: 3}   
+// // console.log(Object.keys(obj)); // ["a", "b", "d"]
+// // console.log(Object.values(obj)); // [9, 1, "hi", 3]
 
-Object.defineProperty(obj, "x", {
-  value: 10,
-  writable: false,   // نمی‌توان تغییر داد
-  enumerable: true,  // در Object.keys دیده می‌شود
-  configurable: true // می‌توان بعداً حذف یا دوباره تعریف کرد
-});
+// const sym1 = Symbol('id');
+// const sym2 = Symbol('id');
+// console.log(sym1 === sym2); // false
+// // Object.getOwnPropertyNames()
+// obj[sym1] = 'hidden';
+// console.log(Object.keys(obj)); // ["a"]
+// console.log(Object.getOwnPropertyNames(obj)); // ["hidden"]
+// console.log(Object.getOwnPropertySymbols(obj)); // [Symbol(id)]
 
-obj.x = 12
+// // // delete object.property
+// console.log(delete obj.a); // true
+// console.log(obj.a); // undefined
+// Object.defineProperty(obj, 'b', { configurable:false });
+// console.log(delete obj.b); // false
 
-console.log(obj);
+// // Object.assign()
+const target = {a:1};
+const src = {b:2, c: {d:3}};
+Object.assign(target, src);
+console.log(target); // { a:1, b:2, c: { d:3 } }
 
+// // Object.freeze()
+const o = {a:1, b:{c:2}};
+Object.freeze(o);
+o.a = 99;            // شکست می‌خورد (silently یا TypeError در strict mode)
+delete o.a;          // false
+o.b.c = 3;           // موفق — چون nested object فریز نشده
+console.log(o); // {a:1, b:{c:3}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const arr = [123456.78, new Date('2020-01-01T00:00:00Z')];
-// console.log(arr.toLocaleString('fa-IR')); //'en-US' - 'ar-EG'
-
-
+// // Object.seal()
+const w = {a:1};
+Object.seal(w);
+w.a = 2;      // مجاز (اگر writable باشد)
+delete w.a;   // false
+w.b = 3;      // اضافه نمی‌شود
+console.log(w);
 
 
-// const a = [typeof(1, 2, 3)];
-// console.log(a.toString()); // "1,2,3"
 
-// const b = ["1", ["2","3"], "4"];
-// console.log(b[0].toString()); // "1,2,3,4"  — آرایهٔ داخلی هم toString می‌شود
 
-// const c = [typeof(1, undefined, null, 4)];
-// console.log(c.toString());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
