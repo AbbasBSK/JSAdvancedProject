@@ -1,16 +1,59 @@
-const o = { a: 1 };
-console.log('a' in o); // true
-console.log('toString' in o); // true  (از prototype می‌آید)
-console.log('b' in o); // false
+// تابع سازنده
+function MyObject() {}
+
+// تعریف پراپرتی‌ها روی پروتوتایپ
+MyObject.prototype.a = 1;
+MyObject.prototype.b = 2;
+MyObject.prototype.c = 3;
+
+// ساخت سه آبجکت جدید از روی سازنده
+const obj1 = new MyObject();
+const obj2 = new MyObject();
+const obj3 = new MyObject();
+
+// چاپ خروجی
+console.log(`obj1 : a: ${obj1.a}, b: ${obj1.b}, c: ${obj1.c}`);
+console.log(`obj2 : a: ${obj2.a}, b: ${obj2.b}, c: ${obj2.c}`);
+console.log(`obj3 : a: ${obj3.a}, b: ${obj3.b}, c: ${obj3.c}`);
 
 
 
-const parent = { p: 1 };
-const z = Object.create(parent);
-z.a = 10;
-console.log(z.hasOwnProperty('a')); // true
-console.log(z.hasOwnProperty('p')); // false
-console.log(z.hasOwnProperty('toString')); // false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const o = { a: 1 };
+// console.log('a' in o); // true
+// console.log('toString' in o); // true  (از prototype می‌آید)
+// console.log('b' in o); // false
+
+
+
+// const parent = { p: 1 };
+// const z = Object.create(parent);
+// z.a = 10;
+// console.log(z.hasOwnProperty('a')); // true
+// console.log(z.hasOwnProperty('p')); // false
+// console.log(z.hasOwnProperty('toString')); // false
 
 
 
