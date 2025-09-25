@@ -1,239 +1,173 @@
-// مبحث Cloning and Merging Objects 
-// // Clone: یعنی یک کپی از آبجکت بگیریم.
-// می‌تونه شالو باشه → فقط سطح اول جدا میشه، مقادیر داخلی همچنان مرجع مشترک دارن.
-// یا دیپ باشه → کل لایه‌های داخلی هم جدا میشن و کاملاً یک نسخه مستقل ساخته میشه.
-
-// const a = { x: 1, inner: { y: 2 } };
-// const b = { ...a , z : 5 };
-// a.x = 9;
-// a.inner.y = 99; // تغییر در inner.y
-// console.log(b); //
-// console.log(a); // { x: 9, inner: { y: 99 } }
-// b.inner.y = 100
-// console.log(a.inner.y); // 100 (inner هنوز مرجع مشترک است)
-
-// const original = { a: 1, d: { b: 2 } };
-
-// // 1) JSON way (not suitable for functions, Date, undefined, circular)
-// const jsonClone = JSON.parse(JSON.stringify(original));
-// // 2) structuredClone (modern browsers / Web API)
-// const structured = structuredClone(original);
-
-// original.a = 9;
-// original.d.b = 99;
-// console.log(jsonClone);
-// console.log(structured);
-
-
-// const original = {
-//   num: 42,
-//   date: new Date(),
-//   undef: undefined,
-//   // func: () => "hello",
-//   nested: { x: 1 },
-// };
-// // 1) JSON way (not suitable for functions, Date, undefined, circular)
-// const jsonClone = JSON.parse(JSON.stringify(original));
-// console.log(jsonClone);
-
-
-// // 2) structuredClone (modern browsers / Web API)
-// const structured = structuredClone(original);
-// console.log(structured);
-
-
-
-// Object Destructuring
-// تغییر نام (Renaming)
-// const user = { id: 1, name: 'Ali' };
-// const { name: username } = user;
-// console.log(username); // 'Ali'
-
-// // مقادیر پیش‌فرض (Default values)
-// const opts = { verbose: undefined };
-// const { verbose = false, timeout = 3000 } = opts;
-// console.log(verbose); // false
-// console.log(timeout); // 3000
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// مبحث Object Iteration
-// روش اصلی 
-// 1) for...in loop → پیمایش روی کلیدها
-// const user = { name: "Ali", age: 25 };
-
-// for (let key in user) {
-//   console.log(key, ":", user[key]);
-// }
-
-// // 2) Object.keys().forEach() → پیمایش روی کلیدهای خود آبجکت
-// const user2 = { name: "Ali", age: 25 };
-
-// Object.keys(user2).forEach(key => {
-//   console.log(key, ":", user2[key]);
-// });
-
-
-// // 3) Object.entries().forEach() → پیمایش روی کلید + مقدار همزمان// 
-
-// const user3 = { name: "Ali", age: 25 };
-
-// Object.entries(user3).forEach(([key, value]) => {
-//   console.log(key, ":", value);
-// });
-
-
-
-// // سازنده کاراکتر
-// function Character(name, power) {
-//   this.name = name;
-//   this.power = power;
-// }
-
-// // تعریف متد روی پروتوتایپ
-// Character.prototype.attack = function () {
-//   console.log(this.name + " attacks with power " + this.power + "!");
-// };
-
-// // ایجاد چند کاراکتر
-// const hero = new Character("Hero", 50);
-// console.log(hero);
-// const villain = new Character("Villain", 40);
-// console.log(villain);
-
-// // استفاده از متد attack روی هر نمونه
-// hero.attack();     // Hero attacks with power 50!
-// villain.attack();  // Villain attacks with power 40!
-
-// // اضافه کردن یک متد جدید روی پروتوتایپ بعد از ساخته شدن آبجکت‌ها
-// Character.prototype.heal = function () {
-//   console.log(this.name + " heals and regains energy!");
-// };
-// // حالا همه نمونه‌ها به heal هم دسترسی دارن
-// hero.heal();      // Hero heals and regains energy!
-// villain.heal();   // Villain heals and regains energy!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const magicBox = { spell: "Fireball", energy: 100 };
-
-// // destructuring با مقدار پیش‌فرض برای duration
-// const { spell, energy, duration = 60 } = magicBox;
-
-// console.log(`Casting ${spell} with ${energy} energy for ${duration} seconds!`);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const scores = { Ali: 10, Sara: 15, Reza: 12 };
-
-// console.log(Object.entries(scores));
-
-
-// // چاپ همه با Object.entries
-// Object.entries(scores).forEach(([name, score]) => {
-//   console.log(`${name}: ${score}`);
-// });
-
-// // پیدا کردن بیشترین
-// let topName = null;
-// let topScore = 0;
-// Object.entries(scores).forEach(([name, score]) => {
-//   if (score > topScore) {
-//     topScore = score;
-//     topName = name;
+class Animal {
+  #type = "animal";
+  constructor(name) {this.name = name; this.type = this.#type;}
+  speak() {
+    console.log(`${this.name} makes a sound.`);
+    return {a:this.#type};
+  }
+}
+// ایجاد یک نمونه
+const a = new Animal("dog")
+a.speak()
+// تعریف کلاس گربه'-----------------------------
+// class Dog extends Animal {
+//   constructor(a, breed) {
+//     super(a);
+//     this.breed = breed;
 //   }
-// });
+//   speak() {
+//     console.log(`${this.name} barks. It is a ${this.breed}.`);
+//   }
+// }
+// // ایجاد یک نمونه
+// const dog = new Dog("Rex" , "German Shepherd");
+// dog.speak(); // Rex barks. It is a German Shepherd.
 
-// console.log(`${topName} has the highest score: ${topScore}!`);
+// // تعریف کلاس گربه-----------------------------
+class Cat extends Animal {
+  constructor(name , type, color , breed) {
+    super(name , type);
+    this.color = color;
+    this.breed = breed;
+  }
+  speak() {
+    console.log(`${this.name} meows. Its color is ${this.color}. Its breed is ${this.breed}.`);
+  }
+}
+const cat1 = new Cat("Kitty", "white", "Persian");
+console.log(cat1.type);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const settings = { sound: true, difficulty: "hard", controls: { jump: "space" } };
-
-// استفاده از structuredClone (مرورگرهای مدرن / Node جدید)
-const clone = structuredClone(settings);
-clone.controls.jump = "shift";
-
-console.log("Original:", settings.controls.jump);
-console.log("Clone:", clone.controls.jump);
+cat1.speak(); // Kitty meows. Its color is white. Its breed is Persian.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // ایجاد یک نمونه
+// const cat = new Cat("Whiskers");
+// cat.speak(); // Whiskers meows.
+
+
+// const animals = [
+//   new Dog("Rex"),
+//   new Cat("Kitty"),
+//   new Animal("Generic")
+// ];
+
+// animals.forEach(animal => animal.speak());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // کلاس ساده خودرو
+// class Car {
+//   #fuel = 50;           // فیلد خصوصی، فقط داخل کلاس قابل دسترسی
+//   // wheels = 4;
+//   constructor(model, color) {
+//     this.model = model; // پراپرتی عمومی
+//     this.color = color; // پراپرتی عمومی
+//   }
+
+//   // متد رانندگی
+//   drive(km) {
+//     this.#fuel -= km / 10;
+//     return `${this.model} drove ${km} km, remaining fuel: ${this.#fuel}`;
+//   }
+
+//   // متد پر کردن سوخت
+//   refuel(amount) {
+//     this.#fuel += amount;
+//     return `${this.model} refueled ${amount}, fuel: ${this.#fuel}`;
+//   }
+
+//   // متد گرفتن اطلاعات کامل خودرو به صورت آبجکت
+//   getInfo() {
+//     return {
+//       model: this.model,
+//       color: this.color,
+//       fuel: this.#fuel
+//     };
+//   }
+// }
+
+
+
+
+
+// // --- ساخت خودروهای جدید ---
+// const car1 = new Car("Toyota", "Red");
+// const car2 = new Car("BMW", "Black");
+
+
+// // خروجی به صورت آبجکت
+// console.log(car1.getInfo()); // { model: 'Toyota', color: 'Red', fuel: 50 }
+// console.log(car2.getInfo()); // { model: 'BMW', color: 'Black', fuel: 50 }
+
+// // استفاده از رفتارها
+// console.log(car1.drive(100));  // Toyota drove 100 km, remaining fuel: 40
+// console.log(car1.refuel(20));  // Toyota refueled 20, fuel: 60
+// console.log(car1.fuel);
+// console.log(car1.getInfo().fuel);
+
+
+
+
+
+
+// // کلاس فرزند: ماشین‌های الکتریکی
+// class ElectricCar extends Car {
+//   constructor(model, color, battery = 100) {
+//     super(model, color); // ارث‌بری از Car
+//     this.battery = battery; // پراپرتی جدید مخصوص کلاس فرزند
+//   }
+//   // constructor(b, b, battery = 100) {
+//   //   super(a, b); // ارث‌بری از Car
+//   //   this.battery = battery; // پراپرتی جدید مخصوص کلاس فرزند
+//   // }
+
+//   // متد مخصوص ماشین الکتریکی
+//   charge(amount) {
+//     this.battery += amount;
+//     return `${this.model} charged ${amount}%, battery: ${this.battery}%`;
+//   }
+
+//   // override متد getInfo برای اضافه کردن باتری
+//   getInfo() {
+//     const info = super.getInfo(); // گرفتن اطلاعات از کلاس پایه
+//     info.battery = this.battery;  // اضافه کردن پراپرتی جدید
+//     return info;
+//   }
+// }
+
+// const eCar1 = new ElectricCar("Tesla", "White", 80);
+// console.log(eCar1.drive(50));   // Tesla drove 50 km, remaining fuel: 45
+// console.log(eCar1.charge(15));  // Tesla charged 15%, battery: 95
+// console.log(eCar1.getInfo());   // { model: 'Tesla', color: 'White', fuel: 45, battery: 95 }
