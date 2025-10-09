@@ -1,8 +1,19 @@
-import hi, { add , multiply, numbers } from './math.js';
+// app.js
+import { createProductCard } from './math.js';
+import { createAutoSlider } from './math.js';
+import { toggleTheme } from './math.js';
+import { images1 , images2 , products } from './math.js';
 
-console.log(add(2, 3)); // 5
-console.log(multiply(2, 3)); // 6
 
-console.log(hi('علی')); // سلام علی!
+// ایجاد کارت‌ها
+const productsContainer = document.getElementById('products');
+products.forEach(product => {
+  const card = createProductCard(product);
+  productsContainer.appendChild(card);
+});
 
-console.log(numbers); // [1, 2, 3, 4, 5]
+// ایجاد اسلایدرها
+createAutoSlider('slider1', images1, 2500);
+createAutoSlider('slider2', images2, 4000);
+// رویداد کلیک دکمه برای تغییر تم
+document.getElementById('themeToggle').onclick = toggleTheme;
