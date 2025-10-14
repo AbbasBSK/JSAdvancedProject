@@ -1,14 +1,21 @@
-// productCard.js
-export function createProductCard(product) {
-  const card = document.createElement('div');
-  card.className = 'product-card';
-  card.innerHTML = `
-    <h3>${product.title}</h3>
-    <p>قیمت: ${product.price.toLocaleString()} تومان</p>
-    <p>تعداد: ${product.qty}</p>
-  `;
-  return card;
-}
+
+// app.js
+import { createAutoSlider } from             './main.js';
+import { toggleTheme } from                  './main.js';
+import { images1 , images2 , products } from './main.js';
+
+
+
+// ایجاد اسلایدرها
+createAutoSlider('slider1', images1, 2500);
+createAutoSlider('slider2', images2, 4000);
+// رویداد کلیک دکمه برای تغییر تم
+document.getElementById('themeToggle').onclick = toggleTheme;
+
+
+
+
+
 
 
 
